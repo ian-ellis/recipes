@@ -1,0 +1,104 @@
+
+ext.buildCoverageCheck = { sourcePaths, classesPath, excludes, coverage_limits, testTask->
+
+  jacoco {
+    toolVersion = "0.8.0"
+    reportsDir = file("$buildDir/jacoco/reports")
+  }
+
+  def htmlReportLocation = file("${jacoco.reportsDir}/html")
+
+  def coverage = task coverage(type:JacocoReport, dependsOn: testTask) {
+    group = "Reporting"
+
+    description = "Generate Jacoco coverage reports"
+
+    classDirectories = classesPath.collect {
+      fileTree(dir: it, excludes: excludes)
+    }.inject() { result, i ->
+      result + i
+    } as FileTree
+
+
+    def coverageSourceDirs = sourcePaths
+
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+
+    executionData = files("$buildDir/jacoco/${testTask}.exec")
+
+    reports {
+      xml.enabled = true
+      html.enabled = true
+      html.destination = htmlReportLocation
+    }
+  }
+
+
+  def task = tasks.create("checkCoverage") {
+
+    doLast {
+
+      def report = file("${jacoco.reportsDir}/coverage/coverage.xml")
+
+      def parser = new XmlParser()
+      parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+      parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+
+      def results = parser.parse(report)
+
+      def percentage = {
+        if(it != null){
+
+          def covered = it.'@covered' as Double ?: 0
+          def missed = it.'@missed' as Double ?: 0
+          ((covered / (covered + missed)) * 100).round(2)
+        }else{
+          100
+        }
+      }
+
+      def counters = results.counter
+      def metrics = [
+          'instruction': percentage(counters.find { it.'@type'.equals('INSTRUCTION') }),
+          'branch'     : percentage(counters.find { it.'@type'.equals('BRANCH')}),
+          'line'       : percentage(counters.find { it.'@type'.equals('LINE') }),
+          'complexity' : percentage(counters.find { it.'@type'.equals('COMPLEXITY') }),
+          'method'     : percentage(counters.find { it.'@type'.equals('METHOD') }),
+          'class'      : percentage(counters.find { it.'@type'.equals('CLASS') })
+      ]
+
+
+      def failures = []
+      def passes = []
+      metrics.each {
+        def limit = coverage_limits [it.key]
+        if (it.value < limit) {
+          failures.add("- ${it.key} coverage rate is: ${it.value}%, minimum is ${limit}%")
+        }else {
+          passes.add("- ${it.key} coverage rate is: ${it.value}%, minimum is ${limit}%")
+        }
+      }
+
+      logger.lifecycle("Checking coverage results: $htmlReportLocation/index.html")
+
+      if (failures) {
+        logger.quiet("------------------ Code Coverage Failed -----------------------")
+        failures.each {
+          logger.quiet(it)
+        }
+        logger.quiet("---------------------------------------------------------------")
+        throw new GradleException("Code coverage failed")
+      } else{
+        logger.quiet("------------------ Code Coverage Passed -----------------------")
+        passes.each {
+          logger.quiet(it)
+        }
+        logger.quiet("---------------------------------------------------------------")
+      }
+    }
+
+  }
+  task.dependsOn coverage
+  return task
+}

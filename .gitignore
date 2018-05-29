@@ -1,0 +1,39 @@
+/.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+/com.theiconic.android
+/build
+/captures
+/stub/stub.pid
+/reports
+
+# osx noise
+.DS_Store
+
+# Android
+.gradle
+gen
+bin
+doc
+proguard
+local.properties
+*.iml
+.idea
+build/
+
+# Code quality
+lint-results.xml
+pmd.xml
+
+# Eclipse
+.metadata
+.settings
+
+*.hprof
+/build
+/captures
+
+tags
+.tags
+gentags

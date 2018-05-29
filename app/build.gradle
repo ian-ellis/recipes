@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.codehaus.groovy.android'
+apply plugin: 'jacoco'
+
+apply from: '../coverage.gradle'
+
+android {
+  compileSdkVersion Versions.compile_sdk_version
+  defaultConfig {
+    applicationId "com.github.ianellis.recipes"
+    minSdkVersion Versions.min_sdk_version
+    targetSdkVersion Versions.target_sdk_version
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
+
+}
+
+task copyDebugUnitTestKotlinClasses {
+  ext.kotlinOutputDir = []
+}
+
+task copyReleaseUnitTestKotlinClasses {
+  ext.kotlinOutputDir = []
+}
+
+dependencies {
+  //___________________________________ MODULES ___________________________________
+
+  implementation project(':domain')
+
+  //___________________________________ ANDROID ___________________________________
+
+  implementation Libs.appCompatV7
+  implementation Libs.constraintLayout
+
+  //___________________________________ STD LIBS ___________________________________
+
+  implementation Libs.kotlinStdLib
+
+  //___________________________________ TESTS ___________________________________
+
+  testImplementation TestLibs.junit
+  testImplementation TestLibs.spockLibs
+
+  androidTestImplementation TestLibs.androidTestRunner
+  androidTestImplementation TestLibs.espresso
+}
+
+def app_excludes = [
+    '**/R.class',
+    '**/R$*.class',
+    '**/*Activity.class',
+    '**/*Dialog.class',
+    '**/*Fragment.class',
+    'android/**',
+    '**/BuildConfig.*',
+]
+buildCoverageCheck(
+    ['src/main/java'],//sourcePaths:
+    ["$buildDir/intermediates/classes/debug", "$buildDir/tmp/kotlin-classes/debug/"],// classesPath:
+    app_excludes,//excludes:
+    [
+        'instruction': 100,
+        'branch'     : 100,
+        'line'       : 100,
+        'complexity' : 100,
+        'method'     : 100,
+        'class'      : 100
+    ],//coverageLimits:
+    "testDebugUnitTest"
+)

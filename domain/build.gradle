@@ -1,0 +1,44 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'groovy'
+apply plugin: 'jacoco'
+apply from: '../coverage.gradle'
+
+dependencies {
+
+  //___________________________________ MODULES ___________________________________
+
+  implementation project(':entities')
+
+  //_________________________________ THIRD PARTY ________________________________
+
+  implementation Libs.rx
+
+  //___________________________________ TESTS ___________________________________
+
+  testImplementation TestLibs.junit
+  testImplementation TestLibs.spockLibs
+
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+
+def domain_excludes = [
+
+]
+buildCoverageCheck(
+    ['src/main/java'],//sourcePaths:
+    ['build/classes/java', 'build/classes/kotlin'],//classesPath:
+    domain_excludes,//excludes:
+    [
+        'instruction': 100,
+        'branch'     : 100,
+        'line'       : 100,
+        'complexity' : 100,
+        'method'     : 100,
+        'class'      : 100
+    ],//coverageLimits:
+    "test"
+)
