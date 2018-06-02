@@ -48,6 +48,8 @@ object Plugins {
 object AnnotationProcessors {
   val javaX = "javax.inject:javax.inject:1"
   val databinding = "com.android.databinding:compiler:${Versions.android_plugin_version}"
+  val daggerCompile = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
+  val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger_version}"
 }
 
 object Libs {
@@ -61,7 +63,7 @@ object Libs {
   val daggerCore = "com.google.dagger:dagger:${Versions.dagger_version}"
   val daggerAndroid = "com.google.dagger:dagger-android:${Versions.dagger_version}"
   val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger_version}"
-  val dagger = arrayOf(daggerCore,daggerAndroid, daggerAndroidSupport)
+  val dagger = arrayOf(daggerCore, daggerAndroid, daggerAndroidSupport)
 
   val appCompatV7 = "com.android.support:appcompat-v7:${Versions.app_compat_version}"
   val materialDesignSupport = "com.android.support:design:${Versions.app_compat_version}"

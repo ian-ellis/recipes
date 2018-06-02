@@ -40,6 +40,11 @@ task copyReleaseUnitTestKotlinClasses {
 
 dependencies {
 
+  //_____________________________ ANNOTATION PROCESSORS ___________________________
+
+  kapt AnnotationProcessors.daggerCompile
+  kapt AnnotationProcessors.daggerProcessor
+
   //___________________________________ MODULES ___________________________________
 
   implementation project(':domain')
@@ -53,8 +58,13 @@ dependencies {
   //___________________________________ STD LIBS ___________________________________
 
   implementation Libs.kotlinStdLib
+  //___________________________________ DAGGER DI __________________________________
 
-  //___________________________________ TESTS ___________________________________
+  implementation Libs.daggerCore
+  implementation Libs.daggerAndroid
+  implementation Libs.daggerAndroidSupport
+
+  //_____________________________________ TESTS ____________________________________
 
   testImplementation TestLibs.junit
   testImplementation TestLibs.spockLibs
@@ -71,6 +81,11 @@ def app_excludes = [
     '**/*Fragment.class',
     'android/**',
     '**/BuildConfig.*',
+    '**/*$*.class',
+    '**/*_Factory.class',
+    '**/*_MembersInjector.class',
+    //dependency injection
+    '**/di/**',
 ]
 buildCoverageCheck(
     ['src/main/java'],//sourcePaths:
