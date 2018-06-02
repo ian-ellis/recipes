@@ -9,6 +9,7 @@ dependencies {
   //__________________________________ ANNOTATION PROCESSORS ________________________________
 
   compileOnly AnnotationProcessors.javaX
+  compileOnly AnnotationProcessors.daggerCompile
 
   //___________________________________ MODULES ___________________________________
 
@@ -30,7 +31,8 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 
 def domain_excludes = [
-    '**/domain/getrecipes/Recipe.class'
+    '**/domain/getrecipes/Recipe.class',
+    '**/di/**'
 ]
 buildCoverageCheck(
     ['src/main/java'],//sourcePaths:

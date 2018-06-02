@@ -39,9 +39,11 @@ task copyReleaseUnitTestKotlinClasses {
 }
 
 dependencies {
+
   //___________________________________ MODULES ___________________________________
 
   implementation project(':domain')
+  implementation project(':entities')
 
   //___________________________________ ANDROID ___________________________________
 
