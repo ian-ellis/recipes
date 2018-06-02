@@ -6,6 +6,10 @@ apply from: '../coverage.gradle'
 
 dependencies {
 
+  //__________________________________ ANNOTATION PROCESSORS ________________________________
+
+  compileOnly AnnotationProcessors.javaX
+
   //___________________________________ MODULES ___________________________________
 
   implementation project(':entities')
