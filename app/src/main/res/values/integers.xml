@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <integer name="recipes_columns">2</integer>
+
+  <integer name="anim_activity_transition">200</integer>
 </resources>
