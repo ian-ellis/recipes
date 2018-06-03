@@ -19,4 +19,15 @@
     <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
   </style>
 
+  <style name="RecipeTextHolder">
+    <item name="android:background">@color/recipe_text_color</item>
+    <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    <item name="android:padding">@dimen/padding</item>
+  </style>
+
+  <style name="RecipeText">
+    <item name="android:textSize">20sp</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
 </resources>

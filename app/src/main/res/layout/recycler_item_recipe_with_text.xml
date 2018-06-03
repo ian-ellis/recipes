@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <data>
+
+    <variable
+        name="recipe"
+        type="com.github.ianellis.recipes.domain.getrecipes.Recipe"/>
+
+  </data>
+  
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      style="@style/RecipeTextHolder">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/RecipeText"
+        android:text="@{recipe.title}"/>
+
+  </FrameLayout>
+
+</layout>
