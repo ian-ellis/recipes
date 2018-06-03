@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <variable
+        name="recipe"
+        type="com.github.ianellis.recipes.domain.getrecipes.Recipe"/>
+
+  </data>
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <com.github.ianellis.recipes.presentation.views.AspectRatioImageView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:scaleType="centerCrop"
+          app:include="@{!recipe.image.isEmpty()}"
+          app:ratio="@dimen/recipe_details_image_ratio"
+          app:picasso="@{recipe.image}"/>
+
+      <com.github.ianellis.recipes.presentation.recipedetails.IngredientsList
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding"
+          android:layout_marginStart="@dimen/padding"
+          android:layout_marginEnd="@dimen/padding"
+          app:ingredients="@{recipe.ingredients}"/>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/padding"
+          android:layout_marginEnd="@dimen/padding"
+          android:text="@{recipe.link}"
+          />
+
+    </LinearLayout>
+
+  </ScrollView>
+</layout>

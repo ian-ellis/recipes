@@ -112,6 +112,7 @@ def app_excludes = [
     '**/recipes/services/**',
     '**/recipes/RecipesApp.class',
     '**/recipes/presentation/views/**',
+    '**/recipes/presentation/recipedetails',
     '**/recipes/presentation/recipes/recipeslist/**'
 
 

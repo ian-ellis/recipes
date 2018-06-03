@@ -64,5 +64,15 @@ object Bindings {
           .into(imageView)
     }
   }
-  
+
+  @JvmStatic
+  @BindingAdapter("include")
+  fun bindInclude(view:View, include:Boolean){
+    view.visibility = if(include){
+      View.VISIBLE
+    }else{
+      View.GONE
+    }
+  }
+
 }
