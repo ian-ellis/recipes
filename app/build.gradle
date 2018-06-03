@@ -72,6 +72,7 @@ dependencies {
 
   implementation Libs.rxAndroid
   implementation Libs.okHttpLogging
+  implementation Libs.picasso
   
   //___________________________________ DAGGER DI __________________________________
 
@@ -107,7 +108,6 @@ def app_excludes = [
     '**/di/**',
     //services
     '**/recipes/services/**',
-    '**/recipes/RecipesApp.class'
     '**/recipes/RecipesApp.class',
     '**/recipes/presentation/views/**'
 

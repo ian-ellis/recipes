@@ -5,8 +5,11 @@ import android.animation.AnimatorListenerAdapter
 import android.databinding.BindingAdapter
 import android.view.View
 import android.view.ViewPropertyAnimator
+import android.widget.ImageView
 import android.widget.TextView
+import com.github.ianellis.recipes.R
 import com.github.ianellis.recipes.presentation.data.LoadingStatus
+import com.squareup.picasso.Picasso
 import java.util.WeakHashMap
 
 object Bindings {
@@ -50,4 +53,16 @@ object Bindings {
       textView.text = status.message
     }
   }
+
+  @JvmStatic
+  @BindingAdapter("picasso")
+  fun bindPicasso(imageView: ImageView, url: String) {
+    if (url.isNotBlank()) {
+      Picasso.with(imageView.context)
+          .load(url)
+          .placeholder(R.color.image_unloaded)
+          .into(imageView)
+    }
+  }
+  
 }
