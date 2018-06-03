@@ -13,6 +13,7 @@ import com.github.ianellis.recipes.domain.getrecipes.Recipe
 internal class RecipesAdapter(private val inflater: LayoutInflater) : RecyclerView.Adapter<RecipeViewHolder>() {
 
   companion object {
+    const val TYPE_UNKNOWN = -1
     const val TYPE_IMAGE = 0
     const val TYPE_TEXT = 1
   }
@@ -27,6 +28,10 @@ internal class RecipesAdapter(private val inflater: LayoutInflater) : RecyclerVi
   var recipeSelected:((Recipe)->Unit)? = null
 
   override fun getItemViewType(position: Int): Int {
+    if(position > recipes.lastIndex || position < 0){
+      return TYPE_UNKNOWN
+    }
+
     return if (recipes[position].image.isEmpty()) {
       TYPE_TEXT
     } else {

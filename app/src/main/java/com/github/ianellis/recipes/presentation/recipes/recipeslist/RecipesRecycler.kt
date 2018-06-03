@@ -41,6 +41,7 @@ class RecipesRecycler : RecyclerView {
     }
     layoutManager = gridLayout
     addItemDecoration(RecipesSpacingDecoration(columns, resources.getDimensionPixelSize(R.dimen.recipe_spacing)))
+    addItemDecoration(RecipesHeadingDecoration(columns, resources.getDimensionPixelSize(R.dimen.recipe_spacing), context, this))
   }
 
 }
