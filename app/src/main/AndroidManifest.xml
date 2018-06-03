@@ -21,6 +21,8 @@
     </activity>
 
     <activity android:name=".presentation.recipedetails.RecipeDetailsActivity" />
+    <activity android:name=".presentation.webview.SimpleWebViewActivity" />
+
   </application>
 
 </manifest>
