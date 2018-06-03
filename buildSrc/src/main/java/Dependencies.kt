@@ -1,6 +1,7 @@
 object Versions {
   val android_plugin_version = "3.1.1"
   val android_groovy_plugin_version = "2.0.0"
+  val android_lifecycle_compiler = "1.1.0"
 
   val kotlin_version = "1.2.30"
 
@@ -50,6 +51,7 @@ object AnnotationProcessors {
   val databinding = "com.android.databinding:compiler:${Versions.android_plugin_version}"
   val daggerCompile = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
   val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger_version}"
+  val androidLifeCycleCompiler = "android.arch.lifecycle:compiler:${Versions.android_lifecycle_compiler}"
 }
 
 object Libs {
