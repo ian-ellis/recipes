@@ -3,17 +3,18 @@ package com.github.ianellis.recipes.presentation.recipes
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.content.res.Resources
 import android.view.View
+import com.github.ianellis.recipes.R
 import com.github.ianellis.recipes.domain.data.ReactiveList
 import com.github.ianellis.recipes.domain.getrecipes.Recipe
 import com.github.ianellis.recipes.presentation.data.LoadingStatus
 import kotlin.jvm.functions.Function0
+import kotlin.jvm.functions.Function1
 import org.junit.Rule
 import org.junit.rules.TestRule
 import rx.Observable
 import rx.Scheduler
 import rx.schedulers.Schedulers
 import spock.lang.Specification
-import com.github.ianellis.recipes.R
 
 class RecipesViewModelSpec extends Specification {
 
@@ -95,6 +96,37 @@ class RecipesViewModelSpec extends Specification {
     then:
     1 * refreshRecipes.invoke()
     viewModel.status.value instanceof LoadingStatus.Loading
+  }
+
+  def 'recipeSelected - invoke openRecipeActivity function when invoked'() {
+    given:
+    def selectedRecipe = new Recipe("", "", [], "")
+    getRecipes.invoke() >> Observable.never()
+    def viewModel = new RecipesViewModel(getRecipes, refreshRecipes, scheduler, resources)
+    def  openRecipeActivity = Mock(Function1)
+    viewModel.openRecipeActivity = openRecipeActivity
+
+    when:
+    viewModel.recipeSelected.invoke(selectedRecipe)
+
+    then:
+    1 * openRecipeActivity.invoke(selectedRecipe)
+  }
+
+  def 'recipeSelected - ignores openRecipeActivity function when not set'() {
+    given:
+    def selectedRecipe = new Recipe("", "", [], "")
+    getRecipes.invoke() >> Observable.never()
+    def viewModel = new RecipesViewModel(getRecipes, refreshRecipes, scheduler, resources)
+    def  openRecipeActivity = Mock(Function1)
+    viewModel.openRecipeActivity = null
+
+    when:
+    viewModel.recipeSelected.invoke(selectedRecipe)
+
+    then:
+    0 * openRecipeActivity.invoke(selectedRecipe)
+    noExceptionThrown()
   }
 
   def 'onCleared() - unsubscribes from getRecipes'() {

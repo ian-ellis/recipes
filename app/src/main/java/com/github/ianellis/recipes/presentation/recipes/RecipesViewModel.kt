@@ -27,6 +27,8 @@ class RecipesViewModel @Inject constructor(
   val status = MutableLiveData<LoadingStatus>()
   val recipes = MutableLiveData<List<Recipe>>()
 
+  var openRecipeActivity:((Recipe)->Unit)? = null
+
   @VisibleForTesting
   private val recipesSubscription: Subscription
 
@@ -46,6 +48,10 @@ class RecipesViewModel @Inject constructor(
   fun refresh(v: View) {
     status.value = LoadingStatus.Loading()
     refreshRecipes()
+  }
+
+  val recipeSelected = {recipe:Recipe ->
+    openRecipeActivity?.invoke(recipe)
   }
 
   private fun displayError() {
