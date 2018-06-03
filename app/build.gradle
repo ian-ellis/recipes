@@ -60,6 +60,7 @@ dependencies {
   implementation Libs.appCompatV7
   implementation Libs.constraintLayout
   implementation Libs.androidLifeCycleExtensions
+  implementation Libs.recyclerView
   implementation Libs.cardView
 
 
