@@ -1,5 +1,7 @@
 package com.github.ianellis.recipes.di.modules
 
+import android.app.Application
+import android.content.res.Resources
 import com.github.ianellis.recipes.services.ServiceFactory
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -44,4 +46,7 @@ class SystemServicesModule {
   fun providesServiceFactory(gson: Gson, okHttp: OkHttpClient): ServiceFactory {
     return ServiceFactory(gson, okHttp)
   }
+
+  @Provides
+  fun providesResources(app: Application): Resources = app.resources
 }
