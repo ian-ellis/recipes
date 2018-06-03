@@ -55,7 +55,10 @@ object AnnotationProcessors {
 object Libs {
 
   val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:${Versions.kotlin_version}"
+  val okHttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.ok_http_version}"
   val retroFitGson = "com.squareup.retrofit2:converter-gson:${Versions.retro_fit_version}"
+  val retroFit = "com.squareup.retrofit2:retrofit:${Versions.retro_fit_version}"
+  val retroFitRx = "com.squareup.retrofit2:adapter-rxjava:${Versions.retro_fit_version}"
 
   val rx = "io.reactivex:rxjava:${Versions.rx_java_version}"
   val rxAndroid = "io.reactivex:rxandroid:${Versions.rx_android_version}"
