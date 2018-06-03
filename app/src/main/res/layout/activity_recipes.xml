@@ -18,21 +18,12 @@
       android:layout_height="match_parent">
 
 
-    <LinearLayout
+    <com.github.ianellis.recipes.presentation.recipes.recipeslist.RecipesRecycler
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical"
-        app:fadeVisible="@{viewModel.status instanceof LoadingStatus.Loaded}">
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Hello world"
-          />
-
-
-    </LinearLayout>
+        app:fadeVisible="@{viewModel.status instanceof LoadingStatus.Loaded}"
+        app:recipes="@{viewModel.recipes}"
+        />
 
     <ProgressBar
         android:layout_width="@dimen/spinner_size"
