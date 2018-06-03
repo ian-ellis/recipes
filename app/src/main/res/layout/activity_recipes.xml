@@ -41,6 +41,31 @@
         android:indeterminate="true"
         app:fadeVisible="@{viewModel.status instanceof LoadingStatus.Loading}"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        app:fadeVisible="@{viewModel.status instanceof LoadingStatus.Error}">
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:errorMessage="@{viewModel.status}"
+          style="@style/ErrorMessageText"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/spacing"
+          android:onClick="@{viewModel::refresh}"
+          android:text="@{@string/recipes_load_error_retry}"
+          style="@style/ErrorRetryText"/>
+
+    </LinearLayout>
+
+
   </FrameLayout>
 
 </layout>

@@ -5,6 +5,8 @@ import android.animation.AnimatorListenerAdapter
 import android.databinding.BindingAdapter
 import android.view.View
 import android.view.ViewPropertyAnimator
+import android.widget.TextView
+import com.github.ianellis.recipes.presentation.data.LoadingStatus
 import java.util.WeakHashMap
 
 object Bindings {
@@ -41,4 +43,11 @@ object Bindings {
     }
   }
 
+  @JvmStatic
+  @BindingAdapter("errorMessage")
+  fun bindErrorMessage(textView: TextView, status: LoadingStatus){
+    if(status is LoadingStatus.Error){
+      textView.text = status.message
+    }
+  }
 }
