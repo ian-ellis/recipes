@@ -28,6 +28,9 @@ android {
     unitTests.returnDefaultValues = true
   }
 
+  dataBinding {
+    enabled = true
+  }
 }
 
 task copyDebugUnitTestKotlinClasses {
@@ -44,6 +47,8 @@ dependencies {
 
   kapt AnnotationProcessors.daggerCompile
   kapt AnnotationProcessors.daggerProcessor
+  kapt AnnotationProcessors.androidLifeCycleCompiler
+  kapt AnnotationProcessors.databinding
 
   //___________________________________ MODULES ___________________________________
 
@@ -54,6 +59,7 @@ dependencies {
 
   implementation Libs.appCompatV7
   implementation Libs.constraintLayout
+  implementation Libs.androidLifeCycleExtensions
 
 
   //___________________________________ STD LIBS ___________________________________
@@ -94,6 +100,8 @@ def app_excludes = [
     '**/*$*.class',
     '**/*_Factory.class',
     '**/*_MembersInjector.class',
+    '**/BR.class',
+    '**/recipes/databinding/**'
     //dependency injection
     '**/di/**',
     //services

@@ -34,6 +34,7 @@ object Versions {
   val objenesis_version = "2.1"
   val cglib_nodep_version = "3.1"
 
+  val android_architecture_components = "1.1.0"
   val support_test_runner_version = "1.0.2"
   val espresso_version = "3.0.2"
 
@@ -76,6 +77,7 @@ object Libs {
   val constraintLayout = "com.android.support.constraint:constraint-layout:${Versions.constraint_layout_version}"
   val cardView = "com.android.support:cardview-v7:${Versions.app_compat_version}"
   val exifinterface = "com.android.support:exifinterface:${Versions.app_compat_version}"
+  val androidLifeCycleExtensions = "android.arch.lifecycle:extensions:${Versions.android_architecture_components}"
 
 
   val androidSupport = arrayOf(appCompatV7, materialDesignSupport, recyclerView)
