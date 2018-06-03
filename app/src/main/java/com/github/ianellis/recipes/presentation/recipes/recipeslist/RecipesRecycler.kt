@@ -20,20 +20,20 @@ class RecipesRecycler : RecyclerView {
   constructor (context: Context?, attrs: AttributeSet?) : super(context, attrs)
   constructor (context: Context?, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
 
-  fun setRecipes(recipes:List<Recipe>){
+  fun setRecipes(recipes: List<Recipe>) {
     recipesAdapter.recipes = recipes
   }
 
-  fun setRecipeSelected(onSelect:(Recipe)->Unit){
+  fun setRecipeSelected(onSelect: (Recipe) -> Unit) {
     recipesAdapter.recipeSelected = onSelect
   }
 
   init {
     adapter = recipesAdapter
-    val gridLayout = GridLayoutManager(context,columns)
-    gridLayout.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
+    val gridLayout = GridLayoutManager(context, columns)
+    gridLayout.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
       override fun getSpanSize(position: Int): Int {
-        return when(adapter.getItemViewType(position)){
+        return when (adapter.getItemViewType(position)) {
           RecipesAdapter.TYPE_TEXT -> columns
           else -> 1
         }
