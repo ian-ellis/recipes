@@ -2,4 +2,5 @@
 <resources>
 
   <dimen name="spinner_size">54dp</dimen>
+  <dimen name="spacing">8dp</dimen>
 </resources>
