@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <variable
+        name="recipe"
+        type="com.github.ianellis.recipes.domain.getrecipes.Recipe"/>
+
+  </data>
+
+  <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      style="@style/RecipeCard">
+
+    <com.github.ianellis.recipes.presentation.views.AspectRatioImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:ratio="1"
+        app:ratioDirection="height"
+        app:picasso="@{recipe.image}"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        style="@style/RecipeCardTextHolder">
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          style="@style/RecipeCardText"
+          android:text="@{recipe.title}"/>
+
+    </FrameLayout>
+
+  </android.support.v7.widget.CardView>
+</layout>
