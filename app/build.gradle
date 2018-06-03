@@ -55,9 +55,18 @@ dependencies {
   implementation Libs.appCompatV7
   implementation Libs.constraintLayout
 
+
   //___________________________________ STD LIBS ___________________________________
 
   implementation Libs.kotlinStdLib
+  implementation Libs.retroFitRx
+  implementation Libs.retroFitGson
+
+  //__________________________________ THIRD PARTY _________________________________
+
+  implementation Libs.rxAndroid
+  implementation Libs.okHttpLogging
+  
   //___________________________________ DAGGER DI __________________________________
 
   implementation Libs.daggerCore
@@ -86,7 +95,10 @@ def app_excludes = [
     '**/*_MembersInjector.class',
     //dependency injection
     '**/di/**',
+    //services
+    '**/recipes/services/**'
 ]
+
 buildCoverageCheck(
     ['src/main/java'],//sourcePaths:
     ["$buildDir/intermediates/classes/debug", "$buildDir/tmp/kotlin-classes/debug/"],// classesPath:
