@@ -14,7 +14,10 @@ class RecipeDetailsActivity : BaseActivity() {
     val recipe = RecipeDetailLauncher.deserialize(from = intent)
     val binding = DataBindingUtil.setContentView<ActivityRecipeDetailsBinding>(this, R.layout.activity_recipe_details)
     binding.recipe = recipe
-    
+    binding.linkHandler = { url: String ->
+      startActivity(WebViewLauncher.launch(from = this, withUrl = url, andTitle = recipe.title))
+      overridePendingTransition(R.anim.slide_in_up, R.anim.no_move)
+    }
     supportActionBar?.title = recipe.title
   }
 

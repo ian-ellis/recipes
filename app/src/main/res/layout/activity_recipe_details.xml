@@ -8,6 +8,10 @@
         name="recipe"
         type="com.github.ianellis.recipes.domain.getrecipes.Recipe"/>
 
+    <variable
+        name="linkHandler"
+        type="kotlin.jvm.functions.Function1&lt;String,kotlin.Unit>"/>
+
   </data>
 
   <ScrollView
@@ -41,6 +45,7 @@
           android:layout_marginStart="@dimen/padding"
           android:layout_marginEnd="@dimen/padding"
           android:text="@{recipe.link}"
+          app:autolinkHandler="@{linkHandler}"
           />
 
     </LinearLayout>
