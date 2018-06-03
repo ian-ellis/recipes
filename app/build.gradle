@@ -106,7 +106,9 @@ def app_excludes = [
     //dependency injection
     '**/di/**',
     //services
-    '**/recipes/services/**'
+    '**/recipes/services/**',
+    '**/recipes/RecipesApp.class'
+
 ]
 
 buildCoverageCheck(
