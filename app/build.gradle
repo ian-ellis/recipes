@@ -101,7 +101,8 @@ def app_excludes = [
     '**/*_Factory.class',
     '**/*_MembersInjector.class',
     '**/BR.class',
-    '**/recipes/databinding/**'
+    '**/recipes/databinding/**',
+    '**/recipes/presentation/bindings/**',
     //dependency injection
     '**/di/**',
     //services
