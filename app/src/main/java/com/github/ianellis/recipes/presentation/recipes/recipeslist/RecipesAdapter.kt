@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.github.ianellis.recipes.R
+import com.github.ianellis.recipes.databinding.RecyclerItemRecipeWithImageBinding
+import com.github.ianellis.recipes.databinding.RecyclerItemRecipeWithTextBinding
 import com.github.ianellis.recipes.domain.getrecipes.Recipe
 
 internal class RecipesAdapter(private val inflater: LayoutInflater) : RecyclerView.Adapter<RecipeViewHolder>() {
@@ -22,6 +24,8 @@ internal class RecipesAdapter(private val inflater: LayoutInflater) : RecyclerVi
       diff.dispatchUpdatesTo(this)
     }
 
+  var recipeSelected:((Recipe)->Unit)? = null
+
   override fun getItemViewType(position: Int): Int {
     return if (recipes[position].image.isEmpty()) {
       TYPE_TEXT
@@ -32,9 +36,11 @@ internal class RecipesAdapter(private val inflater: LayoutInflater) : RecyclerVi
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
     return if (viewType == TYPE_IMAGE) {
-      RecipeImageViewHolder(DataBindingUtil.inflate(inflater, R.layout.recycler_item_recipe_with_image, parent, false))
+      val recipeWithimageBinding: RecyclerItemRecipeWithImageBinding = DataBindingUtil.inflate(inflater, R.layout.recycler_item_recipe_with_image, parent, false)
+      RecipeImageViewHolder(recipeWithimageBinding,recipeSelected)
     } else {
-      RecipeTextViewHolder(DataBindingUtil.inflate(inflater, R.layout.recycler_item_recipe_with_text, parent, false))
+      val recipeWithTextBinding: RecyclerItemRecipeWithTextBinding = DataBindingUtil.inflate(inflater, R.layout.recycler_item_recipe_with_text, parent, false)
+      RecipeTextViewHolder(recipeWithTextBinding,recipeSelected)
     }
   }
 

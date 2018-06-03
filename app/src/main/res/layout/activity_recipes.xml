@@ -23,6 +23,7 @@
         android:layout_height="match_parent"
         app:fadeVisible="@{viewModel.status instanceof LoadingStatus.Loaded}"
         app:recipes="@{viewModel.recipes}"
+        app:onSelected="@{viewModel.recipeSelected}"
         />
 
     <ProgressBar

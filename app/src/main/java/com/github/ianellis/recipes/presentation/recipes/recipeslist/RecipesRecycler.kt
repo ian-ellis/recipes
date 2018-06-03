@@ -24,6 +24,10 @@ class RecipesRecycler : RecyclerView {
     recipesAdapter.recipes = recipes
   }
 
+  fun setRecipeSelected(onSelect:(Recipe)->Unit){
+    recipesAdapter.recipeSelected = onSelect
+  }
+
   init {
     adapter = recipesAdapter
     val gridLayout = GridLayoutManager(context,columns)

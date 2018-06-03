@@ -12,4 +12,10 @@ object RecipesBinding {
     recycler.setRecipes(recipes ?: emptyList())
   }
 
+  @JvmStatic
+  @BindingAdapter("onSelected")
+  fun bindRecipes(recycler: RecipesRecycler, onSelected: (Recipe)->Unit) {
+    recycler.setRecipeSelected(onSelected)
+  }
+
 }
