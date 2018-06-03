@@ -95,6 +95,7 @@ object TestLibs {
   val cgLib = "cglib:cglib-nodep:${Versions.cglib_nodep_version}"
 
   val spockLibs = arrayOf(slf4j, objenesis, groovy, spockCore, cgLib)
+  val androidArchitectureCoreTesting = "android.arch.core:core-testing:${Versions.android_architecture_components}"
 
   val androidTestRunner = "com.android.support.test:runner:${Versions.support_test_runner_version}"
   val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espresso_version}"

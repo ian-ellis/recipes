@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">Recipes</string>
+
+  <string name="recipes_load_error_message">Ooops, an error occurred loading your recipes</string>
 </resources>

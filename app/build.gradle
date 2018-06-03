@@ -77,6 +77,7 @@ dependencies {
 
   testImplementation TestLibs.junit
   testImplementation TestLibs.spockLibs
+  testImplementation TestLibs.androidArchitectureCoreTesting
 
   androidTestImplementation TestLibs.androidTestRunner
   androidTestImplementation TestLibs.espresso
